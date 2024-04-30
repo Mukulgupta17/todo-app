@@ -1,0 +1,263 @@
+import React, { useEffect, useState } from "react";
+// import Textcomp from './Todo1';
+import axios from "axios";
+import Navbar from "./Navbar";
+import Updatemodel from "./Updatemodel";
+import "./todo.css";
+
+function Todo() {
+  const [carttext, setcarttext] = useState([]);
+  const [texts, settexts] = useState(" ");
+  const [num, setnum] = useState();
+  const [btntxt, setbtntxt] = useState("Dark mode");
+const [data,setData]  =useState([])
+const[showUpdate,setshowUpdate] = useState("none")
+const [carttextdata, setcarttextdata] = useState();
+const [idUpdate, setidUpdate] = useState();
+
+
+  const [colorsn , setcolorsn] = useState({
+    color :"black",
+    backgroundColor :"white"
+  })
+  const textsinput = (e) => {
+    return (settexts(e.target.value));
+  };
+     
+     
+
+ 
+
+  useEffect  (() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/datas');
+            setData(response.data);
+          //  console.log(response);
+          } catch (error) { 
+            console.error('Error fetching data:', error);
+        } 
+    };
+
+    fetchData();
+}, []);
+
+
+const deletetext = async (id) => {
+  try {
+      const response = await axios.delete(`http://localhost:3001/datas/${id}`);
+      console.log(response.data); // Log success message
+      // fetchData()
+      // location.reload()
+
+      const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/datas');
+            setData(response.data);
+          //  console.log(response);
+          } catch (error) { 
+            console.error('Error fetching data:', error);
+        } 
+    };
+
+    fetchData();
+  } catch (error) {
+      console.error('Error deleting data:', error);
+  }
+  // fetchData()
+
+};
+ 
+console.log(`data is fetch ${data}`);
+
+  // const adding = (e) => {
+  //   e.preventDefault();
+  //   setcarttext([{ id: `${texts}-${Date.now()}`, texts },...carttext]);
+  //   //  console.log(carttext);
+  //   // setnum(num+1)
+  //   settexts(" ");
+  // };
+
+  const adding = async (e) => {
+    e.preventDefault();
+        // setcarttext(texts)
+    try {
+        await axios.post('http://localhost:3001/datas', {data:carttext});
+        console.log(carttext);
+
+      console.log('Data submitted successfully');
+      // fetchdata()
+      const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/datas');
+            setData(response.data);
+          //  console.log(response);
+          } catch (error) { 
+            console.error('Error fetching data:', error);
+        } 
+    };
+
+    fetchData();
+
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
+        // settexts(" ");
+        setcarttext(" ")
+        // setcarttext(prevCartText => "");
+
+
+  };
+  // const deletetext = (id) => {
+  //   const del = carttext.filter((to) => to.id !== id);
+  //   setcarttext([...del]);
+  // };
+  // const edittext = (tx, id) => {
+  //   // settexts(tx);
+  //   // deletetext(id);
+  // };
+  const edittext   =  ( datas,id) => {
+        
+        // setcarttext(data)
+          setcarttextdata(datas)
+        setidUpdate(id)
+        setshowUpdate("block")
+        // adding()=false
+        // console.log(carttext);
+    // try {
+    //     await axios.put(`http://localhost:3001/datas/${id}`, {data:carttext});
+    //     console.log('Data updated successfully');
+    //     // fetchData(); // Refresh data after update
+    // } catch (error) {
+    //     console.error('Error updating data:', error);
+    // }
+    // deletetext(id)
+
+};
+
+
+
+
+  const changemode = ()=>{
+   if(colorsn.color=="white"){
+    setcolorsn({
+      color :"black",  
+      backgroundColor :"white"
+  
+    })
+    setbtntxt("light moddde")
+   
+   }
+   else{
+    setcolorsn({
+      color :"white",
+      backgroundColor :"black"
+  
+    })
+    setbtntxt("dark mode")
+
+   }
+
+  }
+  return ( 
+    // style={{color:{colors}, background:"black"}}
+    <div className="my-5">
+    <Navbar  colorsn={colorsn} changemode={changemode}  btntxt={btntxt}/>
+    <Updatemodel showUpdate={showUpdate} setData={setData} idUpdate={idUpdate} setcarttextdata={setcarttextdata} carttextdata={carttextdata} carttext={carttext} setshowUpdate={setshowUpdate} setcarttext={setcarttext} />
+
+    <div  className="maincontainer "  style={{display:"flex",justifyContent:"center",position:""}}>
+
+
+    <div className="container d-flex align-items-center w-auto my-3"    style={colorsn}>
+    
+
+      {/* <div  style={colorsn}> */}
+      <form className="addbtn " style={colorsn}>
+      <div  style={{display:"flex"}}>
+      <h1 className="   todolist">To-Do List</h1>
+
+      </div>
+      <div className="d-flex ">
+      <input
+        style={colorsn}
+          type="text"
+          value={carttext}
+          // placeholder={carttext}
+          // onChange={textsinput}
+          className="inputclass w-232 h-35"
+          
+          name="data"
+          onChange={(e)=> setcarttext(e.target.value)}
+        />
+
+        {/* <input type="file" /> */}
+
+        <button  className="inputclass1"  style={{width:"10p"}} onClick={adding}> Add</button>
+      </div>
+       
+      </form>
+
+
+       <div className="maincarttext">
+            
+            {
+            
+            
+            // console.log(data);
+            data.map((carttexts) => (
+                // return(
+      // console.log(data);
+             
+              <div className=" carttxt my-2" style={colorsn}>
+              
+              <div>
+              <h3>{carttexts.data}</h3>
+
+
+              </div>
+
+                {/* <div className="d-flex justify-content-end"> */}
+                 <div className="mainbtn">
+                  <button onClick={() => edittext(carttexts.data, carttexts._id)}>
+                    Edit
+                  </button>
+      
+               <button onClick={() => deletetext(carttexts._id)}>Delete</button>
+              </div>
+               </div>
+                // )
+            )
+            )}
+            
+            </div> 
+            
+  
+      {/* <button onClick={showing}>show</button> */}
+
+      {/* <Textcomp carttext={carttext} num={num}/> */}
+      <div className="d-flex  align-items-center">
+
+      </div>
+
+    </div>
+    {/* <Todo1   carttext1={carttext}  colorsn={colorsn} edittext={edittext} deletetext={deletetext}/> */}
+
+    </div>
+    </div>
+
+  );
+}
+
+export default Todo;
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+/* .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* border: 2px solid red; */
+    /* margin-top:20.3rem; */
+    /* width: 400px; */
+    /* height: 800px; */
+    /* padding: 10px; */
+    /* background: linear-gradient(rgb(184, 184, 124) ,rgb(146, 146, 226)); */
+    /* color: red; */
+/* } */ */
+.container input{
+    margin: 5px;
+}
+.container Button{
+    margin: 5px;
+}
+.maincarttext{
+    /* border: 2px solid red ; */
+    /* top: fixed; */
+    /* height: 480px; */
+    background-color: rgb(150, 144, 137);
+    /* margin: 20px; */
+}
+.carttxtbtn{
+    /* height: 100px; */
+    /* width: 50px; */
+   margin-left: 1.3rem;
+}
+.carttxt{
+    border: 2px solid rgb(219, 19, 19);
+    height: 190px;
+    /* width: 50px; */
+    /* margin-top: 30px; */
+    background-color: rgb(120, 224, 224);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.addbtn{
+    /* margin-top:-45.7rem; */
+    position: absolute;
+    border: 2px solid yellow;
+    height: 50px;
+    width: 300px;
+    margin-left: 2.8rem;
+}
+
+.mainbtn{
+    display: flex;
+    justify-content: end;
+    /* margin-left: 1.3rem; */
+    width: 100%;
+    /* margin-top: inherit; */
+    margin-top: 4.9rem;
+    position: sticky;
+
+    justify-content: space-around;
+
+    /* height: 100vh; */
+    white-space: nowrap;
+  /* text-overflow: ellipsis;  */
+}
+.todolist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.3rem;
+    margin-left: 3.3rem;
+}
+.subNavbar{
+    display: flex;
+   justify-content: space-between;
+}
+.navbar{
+    height: 50px;
+    width: 100%;
+    margin: 10px;
+    /* box-shadow: ; */
+    /* border: 2px solid rgb(141, 135, 135); */
+}
+/* .navitems{
+    display: flex;
+    justify-content: space-around
+} */
+
+/* CSS for screens between 600px and 900px */
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+    .maincontainer {
+      /* background-color: lightblue; */
+      display: flex;
+      justify-content: center;
+      margin-left: 7rem;
+      width:"100%"
+
+    }
+    .maincarttext{
+        width: '100%';
+    }
+  }
+  .inputclass{
+    /* height: 35px; */
+    /* width: 500px; */
+  }
+  .inputclass1{
+    height: 35px;
+    /* width: ; */
+  }
+  .Updatecontainer{
+    border: 2px solid red;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+
+
+
+  }
+
+  .todoaddcss{
+    background-color: rgb(170, 170, 163);
+  }
+ .subbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+
+ @media screen and (max-width: 850px) {
+    /* CSS rules for screens with a width of 600px or less */
+/* .maincarttext{
+    width: auto;
+}
+.navbar{
+    width: auto;
+}
+.navbarsearch{
+    width: auto;
+} */
+/* .maintodocss{
+    width: auto;
+} */
+  }
+  .signintag{
+    border-left: 2px solid black;
+    /* width: 100%; */
+    height: 400px;
+    /* height: 100%; */
+  }
+
+  .signinname{
+    font-size: 91px;
+    opacity: 82%;
+  }
